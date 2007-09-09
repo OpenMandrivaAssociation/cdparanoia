@@ -1,9 +1,11 @@
 %define	name	cdparanoia
 %define	major	0
 %define	version	IIIa9.8
-%define	release %mkrel 12
+%define	release %mkrel 13
 %define	fullname %{name}-III-alpha9.8
-%define	libname	%mklibname cdda 0
+
+%define	libname		%mklibname cdda %{major}
+%define develname	%mklibname cdda -d
 
 Summary:	Utility to copy digital audio CDs
 Name:		%{name}
@@ -13,10 +15,9 @@ Source0:	http://www.xiph.org/paranoia/download/%{fullname}.src.tar.bz2
 Patch0:		cdparanoia-III-alpha9.8-includes.patch
 Patch1:		cdparanoia-III-alpha9.8-cputoolize.patch
 Patch2:		cdparanoia-II-alpha9.8-gcc3.4-fix.patch
-Url:		http://www.xiph.org/paranoia/ 
-License:	GPL
+URL:		http://www.xiph.org/paranoia/ 
+License:	GPLv2
 Group:		Sound
-BuildRequires:	autoconf2.1
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -37,13 +38,15 @@ This is the development libraries for cdparanoia. cdparanoia is a complete
 rewrite of Heiko Eissfeldt's 'cdda2wav' program, and generally is much better 
 at succeeding to read difficult discs with cheap drives.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Development libraries for cdparanoia
 Group:		Development/C
 Provides:	libcdda-devel = %{version}
+Provides:	cdda-devel = %{version}
 Requires:	%{libname} = %{version}
+Obsoletes:	%{mklibname cdda 0 -d}
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 This is the development libraries for cdparanoia. cdparanoia is a complete
 rewrite of Heiko Eissfeldt's 'cdda2wav' program, and generally is much better 
 at succeeding to read difficult discs with cheap drives.
@@ -87,20 +90,17 @@ install -m644 cdparanoia.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 
 %files
 %defattr(644,root,root,755)
-%doc README GPL FAQ.txt
+%doc README FAQ.txt
 %attr(755,root,root) %{_bindir}/cdparanoia
 %attr(644,root,root) %{_mandir}/man1/cdparanoia.1*
 
 %files -n %{libname}
 %defattr(644,root,root,755)
-%doc GPL
 %{_libdir}/*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
-%doc GPL
 %{_includedir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so
-
 
