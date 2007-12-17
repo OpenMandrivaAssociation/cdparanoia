@@ -18,7 +18,6 @@ Patch2:		cdparanoia-II-alpha9.8-gcc3.4-fix.patch
 URL:		http://www.xiph.org/paranoia/ 
 License:	GPLv2
 Group:		Sound
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This CDDA reader distribution ('cdparanoia') reads audio from the CDROM
