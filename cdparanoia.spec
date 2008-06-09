@@ -85,8 +85,12 @@ mkdir -p $RPM_BUILD_ROOT%{_mandir}/man1
 
 install -m644 cdparanoia.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %files
 %defattr(644,root,root,755)
