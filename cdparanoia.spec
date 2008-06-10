@@ -1,8 +1,8 @@
 %define	name	cdparanoia
 %define	major	0
-%define	version	IIIa9.8
-%define	release %mkrel 13
-%define	fullname %{name}-III-alpha9.8
+%define	version	10.0
+%define	release %mkrel 1
+%define	fullname %{name}-III-10.0
 
 %define	libname		%mklibname cdda %{major}
 %define develname	%mklibname cdda -d
@@ -11,12 +11,12 @@ Summary:	Utility to copy digital audio CDs
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Source0:	http://www.xiph.org/paranoia/download/%{fullname}.src.tar.bz2
+Epoch:		1
+Source0:	http://www.xiph.org/paranoia/download/%{fullname}.src.tgz
 Patch0:		cdparanoia-III-alpha9.8-includes.patch
 Patch1:		cdparanoia-III-alpha9.8-cputoolize.patch
-Patch2:		cdparanoia-II-alpha9.8-gcc3.4-fix.patch
 URL:		http://www.xiph.org/paranoia/ 
-License:	GPLv2
+License:	GPLv3+ and LGPLv3+
 Group:		Sound
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -41,9 +41,9 @@ at succeeding to read difficult discs with cheap drives.
 %package -n	%{develname}
 Summary:	Development libraries for cdparanoia
 Group:		Development/C
-Provides:	libcdda-devel = %{version}
-Provides:	cdda-devel = %{version}
-Requires:	%{libname} = %{version}
+Provides:	libcdda-devel = %epoch:%{version}
+Provides:	cdda-devel = %epoch:%{version}
+Requires:	%{libname} = %epoch:%{version}
 Obsoletes:	%{mklibname cdda 0 -d}
 
 %description -n	%{develname}
@@ -55,12 +55,12 @@ at succeeding to read difficult discs with cheap drives.
 %setup -q -n %{fullname}
 %patch0 -p1 -b .includes
 %patch1 -p1 -b .cputoolize
-%patch2 -p1 -b .gcc34
+
 autoconf
 
 %build
 rm -rf $RPM_BUILD_ROOT
-%configure --libdir=%{_libdir}/cdparanoia
+%configure2_5x --libdir=%{_libdir}/cdparanoia
 # (gb) don't use fortify, this package has ugly abuse of memcpy() that we can't cope with if it's a macro
 # XXX would be better to define scsi cmds constants instead...
 export RPM_OPT_FLAGS="$(echo %optflags |sed s/-D_FORTIFY_SOURCE=.//)"
@@ -87,14 +87,12 @@ install -m644 cdparanoia.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
 %endif
 
 %files
 %defattr(644,root,root,755)
-%doc README FAQ.txt
+%doc README 
 %attr(755,root,root) %{_bindir}/cdparanoia
 %attr(644,root,root) %{_mandir}/man1/cdparanoia.1*
 
