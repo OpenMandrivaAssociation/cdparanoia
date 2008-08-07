@@ -1,8 +1,8 @@
 %define	name	cdparanoia
 %define	major	0
-%define	version	10.0
-%define	release %mkrel 2
-%define	fullname %{name}-III-10.0
+%define	version	10.1
+%define	release %mkrel 1
+%define	fullname %{name}-III-%version
 
 %define	libname		%mklibname cdda %{major}
 %define develname	%mklibname cdda -d
@@ -16,7 +16,7 @@ Source0:	http://www.xiph.org/paranoia/download/%{fullname}.src.tgz
 Patch0:		cdparanoia-III-alpha9.8-includes.patch
 Patch1:		cdparanoia-III-alpha9.8-cputoolize.patch
 URL:		http://www.xiph.org/paranoia/ 
-License:	GPLv3+ and LGPLv3+
+License:	GPLv2+ and LGPLv2+
 Group:		Sound
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
