@@ -1,6 +1,6 @@
 %define	name	cdparanoia
 %define	major	0
-%define	version	10.1
+%define	version	10.2
 %define	release %mkrel 1
 %define	fullname %{name}-III-%version
 
