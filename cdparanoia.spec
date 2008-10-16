@@ -12,7 +12,7 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Epoch:		1
-Source0:	http://www.xiph.org/paranoia/download/%{fullname}.src.tgz
+Source0:	http://downloads.xiph.org/releases/cdparanoia/%{fullname}.src.tgz
 Patch0:		cdparanoia-III-alpha9.8-includes.patch
 Patch1:		cdparanoia-III-alpha9.8-cputoolize.patch
 URL:		http://www.xiph.org/paranoia/ 
