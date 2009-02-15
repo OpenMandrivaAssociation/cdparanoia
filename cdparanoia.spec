@@ -1,7 +1,7 @@
 %define	name	cdparanoia
 %define	major	0
 %define	version	10.2
-%define	release %mkrel 1
+%define	release %mkrel 2
 %define	fullname %{name}-III-%version
 
 %define	libname		%mklibname cdda %{major}
@@ -14,7 +14,8 @@ Release:	%{release}
 Epoch:		1
 Source0:	http://downloads.xiph.org/releases/cdparanoia/%{fullname}.src.tgz
 Patch0:		cdparanoia-III-alpha9.8-includes.patch
-Patch1:		cdparanoia-III-alpha9.8-cputoolize.patch
+Patch1:		cdparanoia-III-10.2-gcc43.patch
+Patch2:		cdparanoia-III-10.2-format-security.patch
 URL:		http://www.xiph.org/paranoia/ 
 License:	GPLv2+ and LGPLv2+
 Group:		Sound
@@ -54,7 +55,8 @@ at succeeding to read difficult discs with cheap drives.
 %prep
 %setup -q -n %{fullname}
 %patch0 -p1 -b .includes
-%patch1 -p1 -b .cputoolize
+%patch1 -p1 -b .gcc43
+%patch2 -p1 -b .fs
 
 autoconf
 
