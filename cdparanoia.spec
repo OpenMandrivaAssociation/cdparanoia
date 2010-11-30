@@ -1,7 +1,7 @@
 %define	name	cdparanoia
 %define	major	0
 %define	version	10.2
-%define	release %mkrel 6
+%define	release %mkrel 7
 %define	fullname %{name}-III-%version
 
 %define	libname		%mklibname cdda %{major}
