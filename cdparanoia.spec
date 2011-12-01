@@ -61,7 +61,7 @@ at succeeding to read difficult discs with cheap drives.
 autoconf
 
 %build
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %configure2_5x --libdir=%{_libdir}/cdparanoia
 # (gb) don't use fortify, this package has ugly abuse of memcpy() that we can't cope with if it's a macro
 # XXX would be better to define scsi cmds constants instead...
@@ -69,23 +69,23 @@ export RPM_OPT_FLAGS="$(echo %optflags |sed s/-D_FORTIFY_SOURCE=.//)"
 make OPT="-fsigned-char -finline-functions -Dsize16='short' -Dsize32='int' $RPM_OPT_FLAGS"
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{_bindir}
-mkdir -p $RPM_BUILD_ROOT%{_docdir}
-mkdir -p $RPM_BUILD_ROOT%{_includedir}
-mkdir -p $RPM_BUILD_ROOT%{_libdir}
-mkdir -p $RPM_BUILD_ROOT%{_mandir}/man1
+rm -rf %{buildroot}
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_docdir}
+mkdir -p %{buildroot}%{_includedir}
+mkdir -p %{buildroot}%{_libdir}
+mkdir -p %{buildroot}%{_mandir}/man1
 
 %makeinstall \
-	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
-	INCLUDEDIR=$RPM_BUILD_ROOT%{_includedir} \
-	LIBDIR=$RPM_BUILD_ROOT%{_libdir} \
-	MANDIR=$RPM_BUILD_ROOT%{_mandir}
+	BINDIR=%{buildroot}%{_bindir} \
+	INCLUDEDIR=%{buildroot}%{_includedir} \
+	LIBDIR=%{buildroot}%{_libdir} \
+	MANDIR=%{buildroot}%{_mandir}
 
-install -m644 cdparanoia.1 $RPM_BUILD_ROOT%{_mandir}/man1/
+install -m644 cdparanoia.1 %{buildroot}%{_mandir}/man1/
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
