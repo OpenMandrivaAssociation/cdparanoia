@@ -1,0 +1,20 @@
+--- cdparanoia-III-10.2/paranoia/gap.c.includes	2009-02-15 12:48:55.000000000 +0000
++++ cdparanoia-III-10.2/paranoia/gap.c	2009-02-15 12:49:39.000000000 +0000
+@@ -6,6 +6,7 @@
+  *
+  ***/
+ 
++#include <string.h>
+ #include "p_block.h"
+ #include "cdda_paranoia.h"
+ #include "gap.h"
+--- cdparanoia-III-10.2/header.c.includes	2009-02-15 12:49:19.000000000 +0000
++++ cdparanoia-III-10.2/header.c	2009-02-15 12:49:39.000000000 +0000
+@@ -10,6 +10,7 @@
+ #include <unistd.h>
+ #include <stdlib.h>
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <string.h>
+ 
+ static void PutNum(long num,int f,int endianness,int bytes){
