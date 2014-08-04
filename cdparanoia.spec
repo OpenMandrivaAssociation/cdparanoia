@@ -13,9 +13,15 @@ License:	GPLv2+ and LGPLv2+
 Group:		Sound
 Url:		http://www.xiph.org/paranoia/ 
 Source0:	http://downloads.xiph.org/releases/cdparanoia/%{sname}.src.tgz
-Patch0:		cdparanoia-III-alpha9.8-includes.patch
-Patch1:		cdparanoia-III-10.2-gcc43.patch
-Patch2:		cdparanoia-III-10.2-format-security.patch
+# Patch from upstream to fix cdda_interface.h C++ incompatibility ("private")
+# https://trac.xiph.org/changeset/15338
+# https://bugzilla.redhat.com/show_bug.cgi?id=463009
+Patch0:		cdparanoia-10.2-463009.patch
+# #466659
+Patch1:		cdparanoia-10.2-endian.patch
+Patch2:		cdparanoia-10.2-install.patch
+Patch3:		cdparanoia-10.2-format-security.patch
+Patch4:		cdparanoia-use-proper-gnu-config-files.patch
 
 %description
 This CDDA reader distribution ('cdparanoia') reads audio from the CDROM
@@ -64,7 +70,8 @@ at succeeding to read difficult discs with cheap drives.
 autoconf
 
 %build
-%configure2_5x \
+cp /usr/share/libtool/config/config.* .
+%configure \
 	--libdir=%{_libdir}/cdparanoia
 # (gb) don't use fortify, this package has ugly abuse of memcpy() that we can't cope with if it's a macro
 # XXX would be better to define scsi cmds constants instead...
