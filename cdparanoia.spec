@@ -67,7 +67,7 @@ at succeeding to read difficult discs with cheap drives.
 %prep
 %setup -qn %{sname}
 %apply_patches
-autoconf
+autoreconf -fiv
 
 %build
 cp /usr/share/libtool/config/config.* .
