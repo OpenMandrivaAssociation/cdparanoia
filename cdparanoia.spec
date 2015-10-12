@@ -71,6 +71,8 @@ autoreconf -fiv
 
 %build
 cp /usr/share/libtool/config/config.* .
+export CC=gcc
+export CXX=g++
 %configure \
 	--libdir=%{_libdir}/cdparanoia
 # (gb) don't use fortify, this package has ugly abuse of memcpy() that we can't cope with if it's a macro
