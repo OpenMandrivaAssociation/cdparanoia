@@ -8,7 +8,7 @@ Summary:	Utility to copy digital audio CDs
 Name:		cdparanoia
 Epoch:		1
 Version:	10.2
-Release:	21
+Release:	22
 License:	GPLv2+ and LGPLv2+
 Group:		Sound
 Url:		http://www.xiph.org/paranoia/ 
