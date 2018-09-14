@@ -84,12 +84,12 @@ cp /usr/share/libtool/config/config.* .
 autoreconf -fiv
 
 %build
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 
 %configure \
 	--includedir=%{_includedir}/cdda \
-	--libdir=%{_libdir}/cdparanoia
+	--libdir=%{_libdir}
 
 %make_build -j1 OPT="-fsigned-char -finline-functions -Dsize16='short' -Dsize32='int' $RPM_OPT_FLAGS" LDFLAGS="%{ldflags}"
 
