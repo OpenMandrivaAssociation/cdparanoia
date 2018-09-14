@@ -73,7 +73,13 @@ at succeeding to read difficult discs with cheap drives.
 
 %prep
 %setup -qn %{sname}
-%apply_patches
+%patch0 -p3 -b .#463009
+%patch1 -p1 -b .endian
+%patch2 -p1 -b .install
+%patch3 -p1 -b .fmt-sec
+%patch4 -p1 -b .config
+%patch5 -p1 -b .ldflags
+
 cp /usr/share/libtool/config/config.* .
 autoreconf -fiv
 
