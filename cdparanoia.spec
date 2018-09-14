@@ -91,22 +91,10 @@ export CXX=g++
 	--includedir=%{_includedir}/cdda \
 	--libdir=%{_libdir}/cdparanoia
 
-%make_build -j1 OPT="-fsigned-char -finline-functions -Dsize16='short' -Dsize32='int' $RPM_OPT_FLAGS"
+%make_build -j1 OPT="-fsigned-char -finline-functions -Dsize16='short' -Dsize32='int' $RPM_OPT_FLAGS" LDFLAGS="%{ldflags}"
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_docdir}
-mkdir -p %{buildroot}%{_includedir}
-mkdir -p %{buildroot}%{_libdir}
-mkdir -p %{buildroot}%{_mandir}/man1
-
-%make_install \
-	BINDIR=%{buildroot}%{_bindir} \
-	INCLUDEDIR=%{buildroot}%{_includedir} \
-	LIBDIR=%{buildroot}%{_libdir} \
-	MANDIR=%{buildroot}%{_mandir}
-
-install -m644 cdparanoia.1 %{buildroot}%{_mandir}/man1/
+%make_install
 
 %files
 %doc README
@@ -120,6 +108,6 @@ install -m644 cdparanoia.1 %{buildroot}%{_mandir}/man1/
 %{_libdir}/libcdda_paranoia.so.%{major}*
 
 %files -n %{devname}
-%{_includedir}/*
+%{_includedir}/cdda/*
 %{_libdir}/*.so
 %{_libdir}/*.a
