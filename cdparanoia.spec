@@ -108,11 +108,6 @@ mkdir -p %{buildroot}%{_mandir}/man1
 
 install -m644 cdparanoia.1 %{buildroot}%{_mandir}/man1/
 
-# Fix permissions to avoid unstripped-binary-or-object rpmlint error
-chmod 0755 %{buildroot}%{_libdir}/*.so.%{major}*
-
-rm -f %{buildroot}%{_libdir}/*.a
-
 %files
 %doc README
 %{_bindir}/cdparanoia
@@ -127,3 +122,4 @@ rm -f %{buildroot}%{_libdir}/*.a
 %files -n %{devname}
 %{_includedir}/*
 %{_libdir}/*.so
+%{_libdir}/*.a
