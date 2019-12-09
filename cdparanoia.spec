@@ -12,7 +12,7 @@ Summary:	Utility to copy digital audio CDs
 Name:		cdparanoia
 Epoch:		1
 Version:	10.2
-Release:	24
+Release:	25
 License:	GPLv2+ and LGPLv2+
 Group:		Sound
 Url:		http://www.xiph.org/paranoia/ 
@@ -27,7 +27,6 @@ Patch2:		cdparanoia-10.2-install.patch
 Patch3:		cdparanoia-10.2-format-security.patch
 Patch4:		cdparanoia-use-proper-gnu-config-files.patch
 Patch5:		cdparanoia-10.2-ldflags.patch
-BuildRequires:	gcc
 
 %description
 This CDDA reader distribution ('cdparanoia') reads audio from the CDROM
@@ -84,9 +83,6 @@ cp /usr/share/libtool/config/config.* .
 autoreconf -fiv
 
 %build
-#export CC=gcc
-#export CXX=g++
-
 %configure \
 	--includedir=%{_includedir}/cdda \
 	--libdir=%{_libdir}
