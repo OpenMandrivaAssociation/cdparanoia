@@ -15,7 +15,7 @@ Version:	10.2
 Release:	28
 License:	GPLv2+ and LGPLv2+
 Group:		Sound
-Url:		http://www.xiph.org/paranoia/ 
+Url:		https://www.xiph.org/paranoia/ 
 Source0:	http://downloads.xiph.org/releases/cdparanoia/%{sname}.src.tgz
 # Patch from upstream to fix cdda_interface.h C++ incompatibility ("private")
 # https://trac.xiph.org/changeset/15338
